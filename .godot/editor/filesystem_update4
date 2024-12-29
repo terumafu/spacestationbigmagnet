@@ -1,3 +1,11 @@
 res://scenes/game_controller.tscn
 res://scenes/space_debris.tscn
 res://scenes/debrisChunk.tscn
+res://scripts/debrisChunk.gd
+res://scripts/SpaceStation.gd
+res://scripts/Magnet.gd
+res://scripts/MainScene.gd
+res://scripts/SpaceDebris.gd
+res://scripts/Spawner.gd
+res://scenes/menu_scene.tscn
+res://scripts/menu_scene.gd

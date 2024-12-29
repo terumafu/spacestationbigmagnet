@@ -1,14 +1,21 @@
 extends Node
 var debris = preload("res://scenes/space_debris.tscn");
 var chunk = preload("res://scenes/debrisChunk.tscn");
-@export var debrisHolder : Node2D;
 
-func spawns_debris():
+@export var debrisHolder : Node2D;
+@export var spawnTimer : Timer;
+@export var afterWaveTimer : Timer;
+
+var spawnArr = [];
+
+signal waveCompleteSignal;
+
+func spawns_debris(location, type, size, speed):
 	var tempDebris = debris.instantiate();
-	tempDebris.global_position = get_random_border_location();
-	tempDebris.set_sprite(randi_range(0,1));
-	tempDebris.set_size(randi_range(1,5));
-	tempDebris.set_speed(Vector2(randi_range(50,400),randi_range(-10,10)));
+	tempDebris.global_position = location;
+	tempDebris.set_sprite(type);
+	tempDebris.set_size(size);
+	tempDebris.set_speed(speed);
 	debrisHolder.add_child(tempDebris);
 	tempDebris.breakSignal.connect(debrisBreaks);
 
@@ -34,6 +41,19 @@ func spawn_chunks(location,numchunks : int,type):
 		temp.global_position = location + Vector2(numchunks * 4 * randi_range(-5,5),numchunks * 4 * randi_range(-5,5));
 
 func _on_timer_timeout():
-	spawns_debris();
+	if spawnArr.size() > 0:
+		var temp = spawnArr.pop_front()
+		spawns_debris(get_random_border_location(), temp.type, temp.size, temp.speed);
+		spawnTimer.start();
+	else:
+		afterWaveTimer.start();
 func get_random_border_location():
 	return Vector2(-400,randi_range(0,648));
+func set_wave(arr,spawntime):
+	spawnArr.append_array(arr);
+	spawnTimer.wait_time = spawntime;
+	spawnTimer.start();
+
+func _on_after_wave_timer_timeout():
+	#next wave;
+	waveCompleteSignal.emit();

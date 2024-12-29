@@ -5,12 +5,13 @@ extends Node2D
 @export var hpBar : TextureProgressBar;
 @export var weightLabel : Label;
 @export var pointsLabel : Label;
+
 const MAGNETDISTANCE = 130;
+
 var hp = 100;
 var points = 0;
 var weight = 0;
 var weightMax = 20;
-
 
 func _process(_delta):
 	rotate_magnet_around_mouse();
@@ -53,8 +54,8 @@ func _on_collection_area_body_entered(body):
 			points += body.return_type();
 			weight += body.return_size();
 			danger = false;
-			pointsLabel.text = str("points: ", points);
-			weightLabel.text = str("weight: ", weight);
+			pointsLabel.text = str("money: ", points);
+			weightLabel.text = str("weight: ", weight, "/", weightMax);
 	if danger:
 		change_hp(body.return_size() * 5);
 	body.queue_free();

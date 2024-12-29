@@ -3,9 +3,12 @@ extends Node2D
 @export var MagArea : Area2D;
 @export var beamSprite : Sprite2D;
 @export var magSprite = Sprite2D;
+
 var debrisArr = [];
 var magnetType = 0;
+
 const MAXMAGNETPOWER = 15.0;
+
 var currentMagnetPower = 0.0;
 var sizeMultiplier = 1.0;
 var magnetArr = [
@@ -51,5 +54,5 @@ func resize_beam(change):
 	if change < 0 && MagArea.scale[1] > 3 || change > 0 && MagArea.scale[1] < 0.5:
 		return;
 	sizeMultiplier = 1.0 / (MagArea.scale[1] / 3.0);
-	MagArea.scale += Vector2(change/30.0,-change/10.0);
+	MagArea.scale += Vector2(change/30.0,-change/8.0);
 	MagArea.position.y = -15 -( MagArea.scale[1] * 100)/2;

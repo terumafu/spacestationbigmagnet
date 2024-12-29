@@ -2,10 +2,13 @@ extends RigidBody2D;
 
 @export var sprite : Sprite2D;
 @export var collisionShape : CollisionShape2D;
+
 var hasBeenDragged = false;
 func dragged():
 	hasBeenDragged = true;
+
 signal breakSignal;
+
 var type;
 var spriteArr = ["res://assets/spacerock.png","res://assets/gold.png"]
 var scrapArr = [
@@ -13,6 +16,7 @@ var scrapArr = [
 	["res://assets/yellowchunk1.png","res://assets/yellowchunk2.png","res://assets/yellowchunk3.png"]
 ];
 var health;
+
 func _process(_delta):
 	if get_colliding_bodies() != []:
 		for n in get_colliding_bodies():

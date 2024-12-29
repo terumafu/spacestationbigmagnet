@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bupilv47cypt6"]
+[gd_scene load_steps=14 format=3 uid="uid://bupilv47cypt6"]
 
 [ext_resource type="Script" path="res://scripts/SpaceStation.gd" id="1_bbdfr"]
 [ext_resource type="Script" path="res://scripts/Earth.gd" id="1_fbbnk"]
 [ext_resource type="Texture2D" uid="uid://dfgas3k1c7vgd" path="res://assets/earth.png" id="1_md7tw"]
 [ext_resource type="Texture2D" uid="uid://do6gaaltjys6j" path="res://assets/background.png" id="1_sufco"]
+[ext_resource type="Script" path="res://scripts/MainScene.gd" id="1_tt0bm"]
 [ext_resource type="Texture2D" uid="uid://dv0deiefgsnpf" path="res://assets/spaceStationSprite.png" id="2_db6d5"]
 [ext_resource type="Script" path="res://scripts/Magnet.gd" id="3_cutrr"]
 [ext_resource type="Texture2D" uid="uid://cheexu4rdyhm8" path="res://assets/redmagnet.png" id="4_f5ym7"]
@@ -19,8 +20,10 @@ radius = 450.0
 
 [node name="GameController" type="Node"]
 
-[node name="MainScene" type="Node2D" parent="."]
+[node name="MainScene" type="Node2D" parent="." node_paths=PackedStringArray("spawner")]
 texture_filter = 1
+script = ExtResource("1_tt0bm")
+spawner = NodePath("Spawner")
 
 [node name="background" type="Sprite2D" parent="MainScene"]
 texture_repeat = 2
@@ -34,9 +37,9 @@ position = Vector2(500, 300)
 script = ExtResource("1_bbdfr")
 magnet = NodePath("Magnet")
 planet = NodePath("../Earth")
-hpBar = NodePath("../../CanvasLayer/Control/TextureProgressBar")
-weightLabel = NodePath("../../CanvasLayer/Control/weightLabel")
-pointsLabel = NodePath("../../CanvasLayer/Control/pointsLabel")
+hpBar = NodePath("../CanvasLayer/Control/TextureProgressBar")
+weightLabel = NodePath("../CanvasLayer/Control/weightLabel")
+pointsLabel = NodePath("../CanvasLayer/Control/pointsLabel")
 
 [node name="Camera2D" type="Camera2D" parent="MainScene/SpaceStation"]
 offset = Vector2(-200, 2.08165e-12)
@@ -79,7 +82,7 @@ shape = SubResource("CircleShape2D_s3dhi")
 [node name="Earth" type="Node2D" parent="MainScene" node_paths=PackedStringArray("hpBar")]
 position = Vector2(1100, 600)
 script = ExtResource("1_fbbnk")
-hpBar = NodePath("../../CanvasLayer/Control/EarthHpBar")
+hpBar = NodePath("../CanvasLayer/Control/EarthHpBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="MainScene/Earth"]
 scale = Vector2(10, 10)
@@ -90,25 +93,32 @@ texture = ExtResource("1_md7tw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MainScene/Earth/Area2D"]
 shape = SubResource("CircleShape2D_jwqyl")
 
-[node name="Spawner" type="Node" parent="MainScene" node_paths=PackedStringArray("debrisHolder")]
+[node name="Spawner" type="Node" parent="MainScene" node_paths=PackedStringArray("debrisHolder", "spawnTimer", "afterWaveTimer")]
 script = ExtResource("7_vus6p")
 debrisHolder = NodePath("debris")
+spawnTimer = NodePath("spawnTimer")
+afterWaveTimer = NodePath("afterWaveTimer")
 
 [node name="debris" type="Node2D" parent="MainScene/Spawner"]
 
-[node name="Timer" type="Timer" parent="MainScene/Spawner"]
-autostart = true
+[node name="spawnTimer" type="Timer" parent="MainScene/Spawner"]
+wait_time = 3.0
+one_shot = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="afterWaveTimer" type="Timer" parent="MainScene/Spawner"]
+wait_time = 10.0
+one_shot = true
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="CanvasLayer" type="CanvasLayer" parent="MainScene"]
+
+[node name="Control" type="Control" parent="MainScene/CanvasLayer"]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="EarthHpBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+[node name="EarthHpBar" type="TextureProgressBar" parent="MainScene/CanvasLayer/Control"]
 layout_mode = 0
 offset_left = 1052.0
 offset_top = 548.0
@@ -118,7 +128,7 @@ value = 100.0
 fill_mode = 3
 texture_progress = ExtResource("1_md7tw")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MainScene/CanvasLayer/Control"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -126,15 +136,15 @@ value = 100.0
 fill_mode = 3
 texture_progress = ExtResource("2_db6d5")
 
-[node name="weightLabel" type="Label" parent="CanvasLayer/Control"]
+[node name="weightLabel" type="Label" parent="MainScene/CanvasLayer/Control"]
 layout_mode = 0
 offset_left = 100.0
 offset_top = 2.0
 offset_right = 205.0
 offset_bottom = 37.0
-text = "meight: 0"
+text = "weight: 0/20"
 
-[node name="pointsLabel" type="Label" parent="CanvasLayer/Control"]
+[node name="pointsLabel" type="Label" parent="MainScene/CanvasLayer/Control"]
 layout_mode = 0
 offset_left = 100.0
 offset_top = 39.0
@@ -146,4 +156,6 @@ text = "money: 0"
 [connection signal="body_exited" from="MainScene/SpaceStation/Magnet/MagArea" to="MainScene/SpaceStation/Magnet" method="_on_pos_mag_area_body_exited"]
 [connection signal="body_entered" from="MainScene/SpaceStation/CollectionArea" to="MainScene/SpaceStation" method="_on_collection_area_body_entered"]
 [connection signal="body_entered" from="MainScene/Earth/Area2D" to="MainScene/Earth" method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="MainScene/Spawner/Timer" to="MainScene/Spawner" method="_on_timer_timeout"]
+[connection signal="waveCompleteSignal" from="MainScene/Spawner" to="MainScene" method="_on_spawner_wave_complete_signal"]
+[connection signal="timeout" from="MainScene/Spawner/spawnTimer" to="MainScene/Spawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="MainScene/Spawner/afterWaveTimer" to="MainScene/Spawner" method="_on_after_wave_timer_timeout"]
