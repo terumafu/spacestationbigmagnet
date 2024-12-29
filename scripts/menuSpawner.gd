@@ -4,6 +4,10 @@ var debris = preload("res://scenes/space_debris.tscn");
 @export var debrisHolder : Node2D;
 @export var spawnTimer : Timer;
 
+func _process(delta):
+	for n in debrisHolder.get_children():
+		if n.global_position[0] > 1300:
+			n.call_deferred("queue_free");
 func spawns_debris(location, type, size, speed):
 	var tempDebris = debris.instantiate();
 	tempDebris.global_position = location;
@@ -11,3 +15,10 @@ func spawns_debris(location, type, size, speed):
 	tempDebris.set_size(size);
 	tempDebris.set_speed(speed);
 	debrisHolder.add_child(tempDebris);
+	tempDebris.disable_hitbox();
+
+func _on_spawn_timer_timeout():
+	spawns_debris(get_random_border_location(),randi_range(0,1),randi_range(1,2),Vector2(randi_range(100,400),randi_range(-10,10)))
+	
+func get_random_border_location():
+	return Vector2(-200,randi_range(48,600));

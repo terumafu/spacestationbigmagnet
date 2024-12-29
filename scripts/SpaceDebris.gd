@@ -16,7 +16,9 @@ var scrapArr = [
 	["res://assets/yellowchunk1.png","res://assets/yellowchunk2.png","res://assets/yellowchunk3.png"]
 ];
 var health;
-
+var rotationspeed = 0;
+func _ready():
+	rotationspeed = randf_range(-0.05, 0.05);
 func _process(_delta):
 	if get_colliding_bodies() != []:
 		for n in get_colliding_bodies():
@@ -24,7 +26,7 @@ func _process(_delta):
 				health -= n.return_size();
 		if health < 0:
 			break_apart();
-			
+	sprite.rotate(rotationspeed);
 func break_apart():
 	collisionShape.disabled = true;
 	breakSignal.emit(global_position,return_size(),type);
@@ -45,3 +47,5 @@ func return_size():
 	return sprite.scale[0];
 func return_type():
 	return type;
+func disable_hitbox():
+	set_collision_layer_value(1,false);
