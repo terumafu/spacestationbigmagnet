@@ -2,3 +2,4 @@
 .godot/
 /.godot
 *.cfg
+/.godot/editor
