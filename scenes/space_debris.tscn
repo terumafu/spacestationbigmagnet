@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0pgu3kjbjw66"]
+
+[ext_resource type="Script" path="res://scripts/SpaceDebris.gd" id="1_oar2r"]
+[ext_resource type="Texture2D" uid="uid://dawpb3m30q3y7" path="res://assets/gold.png" id="2_sybno"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xhqjj"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kai2a"]
+radius = 23.0
+
+[node name="SpaceDebris" type="RigidBody2D" node_paths=PackedStringArray("sprite", "collisionShape")]
+physics_material_override = SubResource("PhysicsMaterial_xhqjj")
+gravity_scale = 1.66533e-16
+max_contacts_reported = 5
+contact_monitor = true
+script = ExtResource("1_oar2r")
+sprite = NodePath("Sprite2D")
+collisionShape = NodePath("CollisionShape2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_sybno")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -2)
+shape = SubResource("CircleShape2D_kai2a")
