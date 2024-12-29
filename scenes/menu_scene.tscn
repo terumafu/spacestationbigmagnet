@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dud6gb6rj430e"]
+[gd_scene load_steps=5 format=3 uid="uid://dud6gb6rj430e"]
 
 [ext_resource type="Script" path="res://scripts/menu_scene.gd" id="1_mchlw"]
 [ext_resource type="Texture2D" uid="uid://do6gaaltjys6j" path="res://assets/background.png" id="2_83kpl"]
 [ext_resource type="Texture2D" uid="uid://dfgas3k1c7vgd" path="res://assets/earth.png" id="3_i06d5"]
+[ext_resource type="Script" path="res://scripts/menuSpawner.gd" id="4_4ieyu"]
 
 [node name="MenuScene" type="Node2D" node_paths=PackedStringArray("earth")]
 texture_filter = 1
@@ -20,3 +21,14 @@ region_rect = Rect2(2.08165e-12, 2.08165e-12, 1500, 1000)
 position = Vector2(576, 324)
 scale = Vector2(4, 4)
 texture = ExtResource("3_i06d5")
+
+[node name="Spawner" type="Node" parent="." node_paths=PackedStringArray("debrisHolder", "spawnTimer")]
+script = ExtResource("4_4ieyu")
+debrisHolder = NodePath("debris")
+spawnTimer = NodePath("spawnTimer")
+
+[node name="debris" type="Node2D" parent="Spawner"]
+
+[node name="spawnTimer" type="Timer" parent="Spawner"]
+wait_time = 3.0
+one_shot = true

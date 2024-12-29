@@ -9,3 +9,4 @@ res://scripts/SpaceDebris.gd
 res://scripts/Spawner.gd
 res://scenes/menu_scene.tscn
 res://scripts/menu_scene.gd
+res://scripts/menuSpawner.gd
