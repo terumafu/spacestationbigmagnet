@@ -1,10 +1,11 @@
-Label
-Button
-Control
-ColorRect
+Timer
+Sprite2D
 AudioStreamPlayer2D
+ColorRect
+Label
+Control
+AnimatedSprite2D
+Button
 AudioStreamPlayer
 CanvasLayer
 CanvasGroup
-Sprite2D
-Timer

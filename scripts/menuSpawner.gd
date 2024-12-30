@@ -3,7 +3,7 @@ var debris = preload("res://scenes/space_debris.tscn");
 
 @export var debrisHolder : Node2D;
 @export var spawnTimer : Timer;
-
+signal startGameSignal;
 func _process(_delta):
 	for n in debrisHolder.get_children():
 		if n.global_position[0] > 1300:
@@ -19,10 +19,11 @@ func spawns_debris(location, type, size, speed):
 	tempDebris.disable_hitbox();
 	var button = Button.new();
 	button.text = "start";
-	
 	button.pressed.connect(start_game);
 	tempDebris.get_node("Sprite2D").add_child(button);
-	button.position = -Vector2(25,10)
+	button.position = -Vector2(50,50)/2;
+	print(Vector2(50,50))
+	button.size = Vector2(50,50);
 func _on_spawn_timer_timeout():
 	spawns_debris(get_random_border_location(),randi_range(0,1),randi_range(1,2),Vector2(randi_range(100,400),randi_range(-10,10)))
 	
@@ -30,4 +31,5 @@ func get_random_border_location():
 	return Vector2(-200,randi_range(48,600));
 	
 func start_game():
+	startGameSignal.emit();
 	pass

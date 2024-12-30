@@ -64,4 +64,5 @@ theme_override_constants/shadow_outline_size = 5
 text = "Space Station:
      Big Magnet"
 
+[connection signal="startGameSignal" from="Spawner" to="." method="_on_spawner_start_game_signal"]
 [connection signal="timeout" from="Spawner/spawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]

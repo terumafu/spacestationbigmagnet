@@ -5,17 +5,20 @@ extends Node2D
 @export var hpBar : TextureProgressBar;
 @export var weightLabel : Label;
 @export var pointsLabel : Label;
-
+@export var sprite : Sprite2D;
 const MAGNETDISTANCE = 130;
 
 var hp = 100;
 var money = 0;
 var weight = 0;
 var weightMax = 20;
-var speed = 1;
-
+var speed = 0.5;
+var timePassed = 0;
+var rocksCollected = [];
 signal gameOver;
 func _process(_delta):
+	sprite.position[1] = 10 * sin(timePassed);
+	timePassed += _delta;
 	rotate_magnet_around_mouse();
 	rotate_around(planet);
 	resize_beam();
@@ -56,7 +59,7 @@ func _on_collection_area_body_entered(body):
 			change_money(body.return_type());
 			weight += body.return_size();
 			danger = false;
-			
+			rocksCollected.append({"size":body.return_size(),"type":body.return_type()});
 			weightLabel.text = str("weight: ", weight, "/", weightMax);
 	if danger:
 		change_hp(-body.return_size() * 5);
@@ -64,11 +67,15 @@ func _on_collection_area_body_entered(body):
 
 func change_hp(num):
 	hp += num;
+	var tween = get_tree().create_tween();
+	tween.tween_property(self,"modulate", Color.RED,0.2);
+	tween.chain().tween_property(self,"modulate", Color.WHITE,0.5)
 	if hp <= 0:
 		gameOver.emit();
 	if hp > 100:
 		hp = 100;
 	hpBar.value = hp;
+	
 
 func change_money(num):
 	money += num;

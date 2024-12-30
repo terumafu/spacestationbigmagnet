@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkhpxt1pgtq82"]
+[gd_scene load_steps=3 format=3 uid="uid://dkhpxt1pgtq82"]
 
 [ext_resource type="Script" path="res://scripts/upgradeMenu.gd" id="1_7tl4k"]
+[ext_resource type="Texture2D" uid="uid://c6xmrgrclolrh" path="res://assets/menuupgrade.png" id="2_mu07x"]
 
 [node name="UpgradeMenu" type="Control" node_paths=PackedStringArray("missionText")]
 layout_mode = 3
@@ -13,23 +14,30 @@ script = ExtResource("1_7tl4k")
 missionText = NodePath("Control/missiontext")
 
 [node name="background" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
-offset_right = 502.0
-offset_bottom = 496.0
+offset_right = 500.0
+offset_bottom = 260.0
 color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(250, 250)
+texture = ExtResource("2_mu07x")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 25.0
+offset_top = 20.0
+offset_right = 144.0
+offset_bottom = 43.0
 text = "Upgrade  Menu"
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 5.0
-offset_top = 50.0
-offset_right = 45.0
-offset_bottom = 90.0
+offset_left = 25.0
+offset_top = 55.0
+offset_right = 65.0
+offset_bottom = 95.0
 
 [node name="repair" type="Control" parent="Control"]
 anchors_preset = 0
@@ -112,9 +120,9 @@ text = "2$"
 
 [node name="exit" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 408.0
+offset_left = 383.0
 offset_top = -45.0
-offset_right = 445.0
+offset_right = 420.0
 offset_bottom = -14.0
 focus_mode = 0
 text = "exit
@@ -122,9 +130,8 @@ text = "exit
 
 [node name="missiontext" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 25.0
 offset_top = 225.0
-offset_right = 475.0
+offset_right = 450.0
 offset_bottom = 425.0
 autowrap_mode = 2
 

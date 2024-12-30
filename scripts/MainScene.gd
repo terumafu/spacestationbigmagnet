@@ -12,7 +12,7 @@ var menu = preload("res://scenes/upgradeMenu.tscn");
 @export var waveName : Label;
 @export var gameOver : Label;
 @export var gameWin : Label;
-
+@export var controls : Control;
 var cameraLocation;
 var currentMission;
 var waveArray = [
@@ -65,7 +65,11 @@ var missionArray = [
 		"shortText": "collect 5 pieces of gold",
 		"checkCallable": 
 			func callable():
-				if spaceStation.money >= 5:
+				var sum = 0;
+				for n in spaceStation.rocksCollected:
+					if n.type == 1:
+						sum += 1;
+				if sum >= 5:
 					spaceStation.change_money(3);,
 	},{
 		"description":
@@ -93,11 +97,21 @@ var missionArray = [
 ]
 
 func _ready():
+	get_tree().paused = true;
 	missionArray.shuffle();
+	
 	#await get_tree().create_timer(0.1).timeout
 	#transition_to_break()
 	spawn_wave();
-
+func _process(_delta):
+	if Input.is_action_just_pressed("esc"):
+		if controls.visible == false && get_tree().paused == true:
+			return;
+		if controls.visible == false:
+			get_tree().paused = true;
+		if controls.visible == true:
+			get_tree().paused = false;
+		controls.visible = !controls.visible;
 func spawn_wave():
 	if waveArray.size() == 0:
 		print("empty")
@@ -125,7 +139,7 @@ func spawn_wave():
 			spawnArr.append(tempdict);
 	spawnArr.shuffle()
 	spawner.set_wave(spawnArr,waveDict.spawnTime);
-	print(spawnArr)
+	#print(spawnArr)
 
 func _on_spawner_transition_break_signal():
 	waveName.visible = false; # this could be a tween
@@ -157,7 +171,10 @@ func spawn_upgrade_menu():
 		currentMission = missionArray.pop_front();
 		temp.set_mission_text(currentMission.description);
 	else:
-		currentMission = null;
+		print("game win!");
+		game_win();
+		return;
+		
 	menuPosition.global_position = Vector2(camera.global_position[0] - 300,75);
 	menuPosition.call_deferred("add_child",temp);
 	temp.repairButtonSignal.connect(repairShip);
@@ -187,6 +204,7 @@ func upgradeBeam():
 		spaceStation.change_money(-4);
 		
 func exit_menu():
+	spaceStation.rocksCollected = [];
 	earth.clear_collision_array();
 	menuPosition.get_child(0).queue_free();
 	var tween = get_tree().create_tween().set_parallel(true);

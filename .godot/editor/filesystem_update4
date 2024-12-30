@@ -16,3 +16,5 @@ res://scenes/upgradeMenu.tscn
 res://scripts/upgradeMenu.gd
 res://scripts/Earth.gd
 res://scenes/main_scene.tscn
+res://scripts/game_controller.gd
+res://scripts/musicPlayerMain.gd

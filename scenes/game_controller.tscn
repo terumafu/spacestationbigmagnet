@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bupilv47cypt6"]
+[gd_scene load_steps=3 format=3 uid="uid://bupilv47cypt6"]
 
-[ext_resource type="PackedScene" uid="uid://o3mf41ds8bme" path="res://scenes/main_scene.tscn" id="1_o6dsm"]
+[ext_resource type="Script" path="res://scripts/game_controller.gd" id="1_sqw3u"]
+[ext_resource type="PackedScene" uid="uid://dud6gb6rj430e" path="res://scenes/menu_scene.tscn" id="2_2agme"]
 
 [node name="GameController" type="Node"]
 process_mode = 3
+script = ExtResource("1_sqw3u")
 
-[node name="MainScene" parent="." instance=ExtResource("1_o6dsm")]
+[node name="MenuScene" parent="." instance=ExtResource("2_2agme")]
+
+[connection signal="startGame" from="MenuScene" to="." method="_on_menu_scene_start_game"]

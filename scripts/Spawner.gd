@@ -59,3 +59,13 @@ func set_wave(arr,spawntime):
 func _on_after_wave_timer_timeout():
 	#go to pause screen first
 	transitionBreakSignal.emit();
+
+
+func _on_killtimer_timeout():
+	for n in debrisHolder.get_children():
+		if is_out_of_bounds(n):
+			n.calldeferred("queue_free");
+func is_out_of_bounds(body):
+	if body.global_position[0] > 1300 || body.global_position[0] < -500 || body.global_position[1] > 1400 || body.global_position[1] < -400:
+		return true;
+	return false;

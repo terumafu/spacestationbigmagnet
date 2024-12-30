@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bq3bkectqev64"
+path="res://.godot/imported/slow frogs (2)-[AudioTrimmer.com].mp3-e8af84ee7c1fe98668df343d834299ad.mp3str"
+
+[deps]
+
+source_file="res://sounds/slow frogs (2)-[AudioTrimmer.com].mp3"
+dest_files=["res://.godot/imported/slow frogs (2)-[AudioTrimmer.com].mp3-e8af84ee7c1fe98668df343d834299ad.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

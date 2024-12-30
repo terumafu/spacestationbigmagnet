@@ -49,3 +49,5 @@ func return_type():
 	return type;
 func disable_hitbox():
 	set_collision_layer_value(1,false);
+
+
