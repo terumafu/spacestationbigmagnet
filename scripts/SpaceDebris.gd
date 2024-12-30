@@ -30,7 +30,7 @@ func _process(_delta):
 func break_apart():
 	collisionShape.disabled = true;
 	breakSignal.emit(global_position,return_size(),type);
-	queue_free();
+	call_deferred("queue_free");
 	
 func set_sprite(num):
 	sprite.texture = load(spriteArr[num]);

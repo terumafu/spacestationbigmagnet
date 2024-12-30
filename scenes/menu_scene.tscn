@@ -64,5 +64,20 @@ theme_override_constants/shadow_outline_size = 5
 text = "Space Station:
      Big Magnet"
 
+[node name="HSlider" type="HSlider" parent="CanvasLayer"]
+offset_left = 983.0
+offset_top = 15.0
+offset_right = 1151.0
+offset_bottom = 31.0
+value = 75.0
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 922.0
+offset_top = 10.0
+offset_right = 980.0
+offset_bottom = 33.0
+text = "volume"
+
 [connection signal="startGameSignal" from="Spawner" to="." method="_on_spawner_start_game_signal"]
 [connection signal="timeout" from="Spawner/spawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]
+[connection signal="value_changed" from="CanvasLayer/HSlider" to="." method="_on_h_slider_value_changed"]

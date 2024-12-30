@@ -6,13 +6,14 @@ extends Node2D
 @export var weightLabel : Label;
 @export var pointsLabel : Label;
 @export var sprite : Sprite2D;
+var soundplayer = preload("res://scenes/soundplayer.tscn");
 const MAGNETDISTANCE = 130;
 
 var hp = 100;
 var money = 0;
 var weight = 0;
 var weightMax = 20;
-var speed = 0.5;
+var speed = 0.8;
 var timePassed = 0;
 var rocksCollected = [];
 signal gameOver;
@@ -57,13 +58,17 @@ func _on_collection_area_body_entered(body):
 		#collected
 		if weight + body.return_size() <= weightMax:
 			change_money(body.return_type());
+			if body.return_type() == 1:
+				var temp = soundplayer.instantiate();
+				temp.set_sound(load("res://sounds/coin-clatter-6-87110-[AudioTrimmer.com].mp3"));
+				call_deferred("add_child",temp);
 			weight += body.return_size();
 			danger = false;
 			rocksCollected.append({"size":body.return_size(),"type":body.return_type()});
 			weightLabel.text = str("weight: ", weight, "/", weightMax);
 	if danger:
 		change_hp(-body.return_size() * 5);
-	body.queue_free();
+	body.call_deferred("queue_free");
 
 func change_hp(num):
 	hp += num;

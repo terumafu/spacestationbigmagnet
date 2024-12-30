@@ -14,6 +14,6 @@ func set_sprite(rocktype, numchunk):
 func _process(delta):
 	modulate.a = (timer.time_left) / timer.wait_time;
 func _on_timer_timeout():
-	queue_free();
+	call_deferred("queue_free");
 func set_speed(vector):
 	apply_impulse(vector);

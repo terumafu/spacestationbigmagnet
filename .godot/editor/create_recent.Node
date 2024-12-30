@@ -1,8 +1,9 @@
+AudioStreamPlayer2D
+Label
+HSlider
 Timer
 Sprite2D
-AudioStreamPlayer2D
 ColorRect
-Label
 Control
 AnimatedSprite2D
 Button

@@ -1,12 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bupilv47cypt6"]
+[gd_scene load_steps=5 format=3 uid="uid://bupilv47cypt6"]
 
 [ext_resource type="Script" path="res://scripts/game_controller.gd" id="1_sqw3u"]
 [ext_resource type="PackedScene" uid="uid://dud6gb6rj430e" path="res://scenes/menu_scene.tscn" id="2_2agme"]
+[ext_resource type="AudioStream" uid="uid://bq3bkectqev64" path="res://sounds/slow frogs (2)-[AudioTrimmer.com].mp3" id="3_7txhj"]
+[ext_resource type="Script" path="res://scripts/musicPlayerMain.gd" id="4_8bidd"]
 
-[node name="GameController" type="Node"]
+[node name="GameController" type="Node" node_paths=PackedStringArray("audioplayer")]
 process_mode = 3
 script = ExtResource("1_sqw3u")
+audioplayer = NodePath("AudioStreamPlayer2D")
 
 [node name="MenuScene" parent="." instance=ExtResource("2_2agme")]
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7txhj")
+autoplay = true
+script = ExtResource("4_8bidd")
+
+[connection signal="changeVolume" from="MenuScene" to="." method="_on_menu_scene_change_volume"]
 [connection signal="startGame" from="MenuScene" to="." method="_on_menu_scene_start_game"]

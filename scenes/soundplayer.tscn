@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxudcfki042x8"]
+
+[ext_resource type="Script" path="res://scripts/DebrisBreakNoise.gd" id="1_wcuue"]
+
+[node name="soundplayer" type="AudioStreamPlayer2D"]
+autoplay = true
+attenuation = 0.707107
+script = ExtResource("1_wcuue")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

@@ -15,7 +15,7 @@ func _on_area_2d_body_entered(body):
 		collisionArray.append({"size": body.return_size(), "type" : body.return_type()});
 		if hp <= 0:
 			gameOver.emit();
-	body.queue_free();
+	body.call_deferred("queue_free");
 	
 func clear_collision_array():
 	collisionArray = [];

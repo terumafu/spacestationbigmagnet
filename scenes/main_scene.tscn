@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://o3mf41ds8bme"]
+[gd_scene load_steps=17 format=3 uid="uid://o3mf41ds8bme"]
 
 [ext_resource type="Script" path="res://scripts/MainScene.gd" id="1_m7dcp"]
 [ext_resource type="Texture2D" uid="uid://do6gaaltjys6j" path="res://assets/background.png" id="2_h5v7i"]
@@ -13,8 +13,6 @@
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="11_d1c2s"]
 [ext_resource type="FontFile" uid="uid://dc0tj6yde6fby" path="res://fonts/8bitlim.ttf" id="12_8nirl"]
 [ext_resource type="Texture2D" uid="uid://47k3b0xkcvow" path="res://assets/arrow.png" id="13_rtt8h"]
-[ext_resource type="AudioStream" uid="uid://bq3bkectqev64" path="res://sounds/slow frogs (2)-[AudioTrimmer.com].mp3" id="14_vybsx"]
-[ext_resource type="Script" path="res://scripts/musicPlayerMain.gd" id="15_qyx0h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s3dhi"]
 radius = 82.0
@@ -291,7 +289,9 @@ the shorter the beam is the stronger it is
 
 Hold LMB to use the beam
 
-Press SPACE to switch polarities"
+Press SPACE to switch polarities
+
+Press ESC to toggle this screen"
 autowrap_mode = 2
 
 [node name="Label4" type="Label" parent="CanvasLayer/Control/Controls Interface"]
@@ -303,13 +303,9 @@ offset_bottom = 517.0
 text = "Pull the small comets into your ship to harvest them, 
 keep the big ones away from the ship and the planet.
 
-crashing comets into each other will cause them to break into smaller digestible pieces"
+crashing comets into each other will cause them to break into smaller digestible pieces
+"
 autowrap_mode = 2
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("14_vybsx")
-autoplay = true
-script = ExtResource("15_qyx0h")
 
 [connection signal="gameOver" from="SpaceStation" to="." method="game_over"]
 [connection signal="body_entered" from="SpaceStation/Magnet/MagArea" to="SpaceStation/Magnet" method="_on_pos_mag_area_body_entered"]

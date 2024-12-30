@@ -1,7 +1,7 @@
 extends Node
 var debris = preload("res://scenes/space_debris.tscn");
 var chunk = preload("res://scenes/debrisChunk.tscn");
-var breakNoise = preload("res://scenes/DebrisBreakNoise.tscn");
+var breakNoise = preload("res://scenes/soundplayer.tscn");
 @export var debrisHolder : Node2D;
 @export var spawnTimer : Timer;
 @export var afterWaveTimer : Timer;
@@ -22,6 +22,7 @@ func spawns_debris(location, type, size, speed):
 func debrisBreaks(location, size, type):
 	spawn_chunks(location,size,type);
 	var temp = breakNoise.instantiate();
+	temp.set_sound(load("res://sounds/ROCKS AND STONES IMPACT - (Sound Effect)-[AudioTrimmer.com].mp3"));
 	call_deferred("add_child",temp);
 	if size == 1:
 		return;

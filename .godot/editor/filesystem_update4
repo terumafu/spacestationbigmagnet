@@ -18,3 +18,5 @@ res://scripts/Earth.gd
 res://scenes/main_scene.tscn
 res://scripts/game_controller.gd
 res://scripts/musicPlayerMain.gd
+res://scripts/Global.gd
+res://scenes/soundplayer.tscn

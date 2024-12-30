@@ -206,7 +206,7 @@ func upgradeBeam():
 func exit_menu():
 	spaceStation.rocksCollected = [];
 	earth.clear_collision_array();
-	menuPosition.get_child(0).queue_free();
+	menuPosition.get_child(0).call_deferred("queue_free");
 	var tween = get_tree().create_tween().set_parallel(true);
 	tween.set_pause_mode(2);
 	tween.tween_property(camera, "zoom", Vector2(1,1), 2).set_trans(Tween.TRANS_SINE)
