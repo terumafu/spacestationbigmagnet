@@ -1,0 +1,135 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkhpxt1pgtq82"]
+
+[ext_resource type="Script" path="res://scripts/upgradeMenu.gd" id="1_7tl4k"]
+
+[node name="UpgradeMenu" type="Control" node_paths=PackedStringArray("missionText")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7tl4k")
+missionText = NodePath("Control/missiontext")
+
+[node name="background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 502.0
+offset_bottom = 496.0
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Upgrade  Menu"
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 50.0
+offset_right = 45.0
+offset_bottom = 90.0
+
+[node name="repair" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="repairlabel" type="Label" parent="Control/repair"]
+layout_mode = 0
+offset_right = 88.0
+offset_bottom = 23.0
+text = "Repair Ship"
+
+[node name="repairbutton" type="Button" parent="Control/repair"]
+layout_mode = 0
+offset_left = 400.0
+offset_right = 445.0
+offset_bottom = 31.0
+focus_mode = 0
+text = "1$"
+
+[node name="speed" type="Control" parent="Control"]
+anchors_preset = 0
+offset_top = 50.0
+offset_right = 40.0
+offset_bottom = 90.0
+
+[node name="speedlabel" type="Label" parent="Control/speed"]
+layout_mode = 0
+offset_right = 88.0
+offset_bottom = 23.0
+text = "upgrade Speed"
+
+[node name="speedbutton" type="Button" parent="Control/speed"]
+layout_mode = 0
+offset_left = 400.0
+offset_right = 445.0
+offset_bottom = 31.0
+focus_mode = 0
+text = "2$"
+
+[node name="beamPower" type="Control" parent="Control"]
+anchors_preset = 0
+offset_top = 150.0
+offset_right = 40.0
+offset_bottom = 190.0
+
+[node name="beamlabel" type="Label" parent="Control/beamPower"]
+layout_mode = 0
+offset_right = 88.0
+offset_bottom = 23.0
+text = "upgrade Beam"
+
+[node name="beambutton" type="Button" parent="Control/beamPower"]
+layout_mode = 0
+offset_left = 400.0
+offset_right = 445.0
+offset_bottom = 31.0
+focus_mode = 0
+text = "4$"
+
+[node name="weight" type="Control" parent="Control"]
+anchors_preset = 0
+offset_top = 100.0
+offset_right = 40.0
+offset_bottom = 140.0
+
+[node name="weightlabel" type="Label" parent="Control/weight"]
+layout_mode = 0
+offset_right = 88.0
+offset_bottom = 23.0
+text = "upgrade Weight"
+
+[node name="weightButton" type="Button" parent="Control/weight"]
+layout_mode = 0
+offset_left = 400.0
+offset_right = 445.0
+offset_bottom = 31.0
+focus_mode = 0
+text = "2$"
+
+[node name="exit" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 408.0
+offset_top = -45.0
+offset_right = 445.0
+offset_bottom = -14.0
+focus_mode = 0
+text = "exit
+"
+
+[node name="missiontext" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 225.0
+offset_right = 475.0
+offset_bottom = 425.0
+autowrap_mode = 2
+
+[connection signal="pressed" from="Control/repair/repairbutton" to="." method="_on_repairbutton_pressed"]
+[connection signal="pressed" from="Control/speed/speedbutton" to="." method="_on_speedbutton_pressed"]
+[connection signal="pressed" from="Control/beamPower/beambutton" to="." method="_on_beambutton_pressed"]
+[connection signal="pressed" from="Control/weight/weightButton" to="." method="_on_weight_button_pressed"]
+[connection signal="pressed" from="Control/exit" to="." method="_on_exit_pressed"]

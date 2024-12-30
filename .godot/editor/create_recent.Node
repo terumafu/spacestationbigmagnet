@@ -1,2 +1,10 @@
+Label
+Button
+Control
+ColorRect
+AudioStreamPlayer2D
+AudioStreamPlayer
+CanvasLayer
+CanvasGroup
 Sprite2D
 Timer

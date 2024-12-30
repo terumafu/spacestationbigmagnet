@@ -1,14 +1,14 @@
 extends Node
 var debris = preload("res://scenes/space_debris.tscn");
 var chunk = preload("res://scenes/debrisChunk.tscn");
-
+var breakNoise = preload("res://scenes/DebrisBreakNoise.tscn");
 @export var debrisHolder : Node2D;
 @export var spawnTimer : Timer;
 @export var afterWaveTimer : Timer;
 
 var spawnArr = [];
 
-signal waveCompleteSignal;
+signal transitionBreakSignal;
 
 func spawns_debris(location, type, size, speed):
 	var tempDebris = debris.instantiate();
@@ -21,6 +21,8 @@ func spawns_debris(location, type, size, speed):
 
 func debrisBreaks(location, size, type):
 	spawn_chunks(location,size,type);
+	var temp = breakNoise.instantiate();
+	call_deferred("add_child",temp);
 	if size == 1:
 		return;
 	for n in size:
@@ -55,5 +57,5 @@ func set_wave(arr,spawntime):
 	spawnTimer.start();
 
 func _on_after_wave_timer_timeout():
-	#next wave;
-	waveCompleteSignal.emit();
+	#go to pause screen first
+	transitionBreakSignal.emit();

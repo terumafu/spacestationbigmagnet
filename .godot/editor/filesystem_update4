@@ -10,3 +10,9 @@ res://scripts/Spawner.gd
 res://scenes/menu_scene.tscn
 res://scripts/menu_scene.gd
 res://scripts/menuSpawner.gd
+res://scripts/DebrisBreakNoise.gd
+res://scenes/DebrisBreakNoise.tscn
+res://scenes/upgradeMenu.tscn
+res://scripts/upgradeMenu.gd
+res://scripts/Earth.gd
+res://scenes/main_scene.tscn

@@ -11,6 +11,8 @@ const MAXMAGNETPOWER = 15.0;
 
 var currentMagnetPower = 0.0;
 var sizeMultiplier = 1.0;
+var powerMult = 1;
+
 var magnetArr = [
 	{"magnetSprite": "res://assets/redmagnet.png", "beamSprite": "res://assets/redBeam.png", "direction": -1},
 	{"magnetSprite": "res://assets/bluemagnet.png", "beamSprite": "res://assets/blueBeam.png", "direction": 1}
@@ -18,7 +20,7 @@ var magnetArr = [
 
 func _process(_delta):
 	for element in debrisArr:
-		element.apply_impulse(magnetArr[magnetType].direction * get_vector() * currentMagnetPower * sizeMultiplier);
+		element.apply_impulse(magnetArr[magnetType].direction * get_vector() * currentMagnetPower * sizeMultiplier * powerMult);
 
 func get_vector():
 	return (MagArea.global_position - global_position).normalized();

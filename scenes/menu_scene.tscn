@@ -1,14 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dud6gb6rj430e"]
+[gd_scene load_steps=7 format=3 uid="uid://dud6gb6rj430e"]
 
 [ext_resource type="Script" path="res://scripts/menu_scene.gd" id="1_mchlw"]
 [ext_resource type="Texture2D" uid="uid://do6gaaltjys6j" path="res://assets/background.png" id="2_83kpl"]
 [ext_resource type="Texture2D" uid="uid://dfgas3k1c7vgd" path="res://assets/earth.png" id="3_i06d5"]
 [ext_resource type="Script" path="res://scripts/menuSpawner.gd" id="4_4ieyu"]
+[ext_resource type="FontFile" uid="uid://dc0tj6yde6fby" path="res://fonts/8bitlim.ttf" id="5_pbjw3"]
 
-[node name="MenuScene" type="Node2D" node_paths=PackedStringArray("earth")]
+[sub_resource type="Theme" id="Theme_6n7ud"]
+default_font = ExtResource("5_pbjw3")
+default_font_size = 50
+
+[node name="MenuScene" type="Node2D" node_paths=PackedStringArray("earth", "titletext")]
 texture_filter = 1
 script = ExtResource("1_mchlw")
-earth = NodePath("earth")
+earth = NodePath("CanvasLayer/Control/earth")
+titletext = NodePath("CanvasLayer/Control/titleFont")
 
 [node name="background" type="Sprite2D" parent="."]
 texture_repeat = 2
@@ -28,9 +34,34 @@ spawnTimer = NodePath("spawnTimer")
 wait_time = 1.5
 autostart = true
 
-[node name="earth" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_6n7ud")
+
+[node name="earth" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(562, 324)
 scale = Vector2(4, 4)
 texture = ExtResource("3_i06d5")
+
+[node name="titleFont" type="Label" parent="CanvasLayer/Control"]
+offset_left = 365.0
+offset_top = 260.0
+offset_right = 726.0
+offset_bottom = 376.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.521569, 0.521569, 0.521569, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 20
+theme_override_constants/shadow_offset_y = 15
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+text = "Space Station:
+     Big Magnet"
 
 [connection signal="timeout" from="Spawner/spawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]

@@ -17,14 +17,14 @@ var scrapArr = [
 ];
 var health;
 var rotationspeed = 0;
-func _ready():
-	rotationspeed = randf_range(-0.05, 0.05);
+func set_rotation_speed(num):
+	rotationspeed = num;
 func _process(_delta):
 	if get_colliding_bodies() != []:
 		for n in get_colliding_bodies():
 			if n.linear_velocity.length() > 60:
 				health -= n.return_size();
-		if health < 0:
+		if health <= 0:
 			break_apart();
 	sprite.rotate(rotationspeed);
 func break_apart():

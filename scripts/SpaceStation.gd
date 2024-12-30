@@ -9,10 +9,12 @@ extends Node2D
 const MAGNETDISTANCE = 130;
 
 var hp = 100;
-var points = 0;
+var money = 0;
 var weight = 0;
 var weightMax = 20;
+var speed = 1;
 
+signal gameOver;
 func _process(_delta):
 	rotate_magnet_around_mouse();
 	rotate_around(planet);
@@ -39,7 +41,7 @@ func rotate_around(node):
 	var change = Input.get_axis("leftAxisB","rightAxisB");
 	if change != 0: 
 		var vector = global_position - node.global_position;
-		var newvector = vector.rotated(change / 100.0);
+		var newvector = vector.rotated(change / 100.0 * speed);
 		if change < 0 && global_position[1] >= 1000:
 			return;
 		if change > 0 && global_position[1] <= 100:
@@ -51,15 +53,31 @@ func _on_collection_area_body_entered(body):
 	if body.return_size() <= 2 && (body.hasBeenDragged == true || max(body.get_linear_velocity()[0],body.get_linear_velocity()[1]) < 100):
 		#collected
 		if weight + body.return_size() <= weightMax:
-			points += body.return_type();
+			change_money(body.return_type());
 			weight += body.return_size();
 			danger = false;
-			pointsLabel.text = str("money: ", points);
+			
 			weightLabel.text = str("weight: ", weight, "/", weightMax);
 	if danger:
-		change_hp(body.return_size() * 5);
+		change_hp(-body.return_size() * 5);
 	body.queue_free();
 
 func change_hp(num):
-	hp -= num;
+	hp += num;
+	if hp <= 0:
+		gameOver.emit();
+	if hp > 100:
+		hp = 100;
 	hpBar.value = hp;
+
+func change_money(num):
+	money += num;
+	pointsLabel.text = str("money: ", money);
+
+func change_max_weight(num):
+	weightMax += num;
+	weightLabel.text = str("weight: ", weight, "/", weightMax);
+	
+func change_weight(num):
+	weight += num;
+	weightLabel.text = str("weight: ", weight, "/", weightMax);
