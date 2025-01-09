@@ -1,5 +1,6 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1735538970
+::res://::1736286415
+export_presets.cfg::TextFile::-1::1735548373::0::1::::<><>::
 ::res://assets/::1735538852
 arrow.png::CompressedTexture2D::2102193817991795734::1735526787::1735526838::1::::<><>::
 background.png::CompressedTexture2D::8206265892213322207::1735433244::1735433304::1::::<><>::
@@ -21,32 +22,33 @@ spaceStationSprite.png::CompressedTexture2D::8685026932085333575::1735433244::17
 yellowchunk1.png::CompressedTexture2D::4838726241108193282::1735433244::1735433304::1::::<><>::
 yellowchunk2.png::CompressedTexture2D::6868950862955495232::1735433244::1735433304::1::::<><>::
 yellowchunk3.png::CompressedTexture2D::919837680477042849::1735433244::1735433304::1::::<><>::
-::res://fonts/::1735454739
+::res://fonts/::1735540513
 8bitlim.ttf::FontFile::7352420542656605542::929946722::1735454739::1::::<><>::
-::res://scenes/::1735539264
-debrisChunk.tscn::PackedScene::8070066411925841787::1735539264::0::1::::<><>::res://scripts/debrisChunk.gd<>uid://ca66d5ci1iglu::::res://assets/yellowchunk1.png
-game_controller.tscn::PackedScene::3821669751686979585::1735539264::0::1::::<><>::res://scripts/game_controller.gd<>uid://dud6gb6rj430e::::res://scenes/menu_scene.tscn<>uid://bq3bkectqev64::::res://sounds/slow frogs (2)-[AudioTrimmer.com].mp3<>res://scripts/musicPlayerMain.gd
-main_scene.tscn::PackedScene::1041185484432577064::1735539264::0::1::::<><>::res://scripts/MainScene.gd<>uid://do6gaaltjys6j::::res://assets/background.png<>res://scripts/SpaceStation.gd<>uid://dv0deiefgsnpf::::res://assets/spaceStationSprite.png<>res://scripts/Magnet.gd<>uid://cheexu4rdyhm8::::res://assets/redmagnet.png<>uid://damv4fsg0tmdw::::res://assets/redBeam.png<>uid://b336sq8iu0gkv::::res://assets/collectionzone.png<>res://scripts/Earth.gd<>uid://dfgas3k1c7vgd::::res://assets/earth.png<>res://scripts/Spawner.gd<>uid://dc0tj6yde6fby::::res://fonts/8bitlim.ttf<>uid://47k3b0xkcvow::::res://assets/arrow.png
-menu_scene.tscn::PackedScene::8571125099839209246::1735539264::0::1::::<><>::res://scripts/menu_scene.gd<>uid://do6gaaltjys6j::::res://assets/background.png<>uid://dfgas3k1c7vgd::::res://assets/earth.png<>res://scripts/menuSpawner.gd<>uid://dc0tj6yde6fby::::res://fonts/8bitlim.ttf
-soundplayer.tscn::PackedScene::4042237643478009107::1735539264::0::1::::<><>::res://scripts/DebrisBreakNoise.gd
+ByteBounce.ttf::FontFile::4735309955174018245::1690456184::1735540510::1::::<><>::
+::res://scenes/::1735552277
+debrisChunk.tscn::PackedScene::8070066411925841787::1735552277::0::1::::<><>::res://scripts/debrisChunk.gd<>uid://ca66d5ci1iglu::::res://assets/yellowchunk1.png
+game_controller.tscn::PackedScene::3821669751686979585::1735552277::0::1::::<><>::res://scripts/game_controller.gd<>uid://dud6gb6rj430e::::res://scenes/menu_scene.tscn<>uid://bq3bkectqev64::::res://sounds/slow frogs (2)-[AudioTrimmer.com].mp3<>res://scripts/musicPlayerMain.gd
+main_scene.tscn::PackedScene::1041185484432577064::1735552277::0::1::::<><>::res://scripts/MainScene.gd<>uid://do6gaaltjys6j::::res://assets/background.png<>res://scripts/SpaceStation.gd<>uid://dv0deiefgsnpf::::res://assets/spaceStationSprite.png<>res://scripts/Magnet.gd<>uid://cheexu4rdyhm8::::res://assets/redmagnet.png<>uid://damv4fsg0tmdw::::res://assets/redBeam.png<>uid://b336sq8iu0gkv::::res://assets/collectionzone.png<>res://scripts/Earth.gd<>uid://dfgas3k1c7vgd::::res://assets/earth.png<>res://scripts/Spawner.gd<>uid://b8p24l1ibk6kv::::res://fonts/ByteBounce.ttf<>uid://47k3b0xkcvow::::res://assets/arrow.png
+menu_scene.tscn::PackedScene::8571125099839209246::1735552277::0::1::::<><>::res://scripts/menu_scene.gd<>uid://do6gaaltjys6j::::res://assets/background.png<>uid://dfgas3k1c7vgd::::res://assets/earth.png<>res://scripts/menuSpawner.gd<>uid://b8p24l1ibk6kv::::res://fonts/ByteBounce.ttf
+soundplayer.tscn::PackedScene::4042237643478009107::1735552277::0::1::::<><>::res://scripts/DebrisBreakNoise.gd
 space_debris.tscn::PackedScene::8945350312688189709::1735538395::0::1::::<><>::res://scripts/SpaceDebris.gd<>uid://dawpb3m30q3y7::::res://assets/gold.png
-upgradeMenu.tscn::PackedScene::7876553998688238357::1735539264::0::1::::<><>::res://scripts/upgradeMenu.gd<>uid://c6xmrgrclolrh::::res://assets/menuupgrade.png
-::res://scripts/::1735539261
-DebrisBreakNoise.gd::GDScript::-1::1735539261::0::1::::<>AudioStreamPlayer2D<>::
+upgradeMenu.tscn::PackedScene::7876553998688238357::1735552277::0::1::::<><>::res://scripts/upgradeMenu.gd<>uid://c6xmrgrclolrh::::res://assets/menuupgrade.png
+::res://scripts/::1735548273
+DebrisBreakNoise.gd::GDScript::-1::1735547470::0::1::::<>AudioStreamPlayer2D<>::
 debrisChunk.gd::GDScript::-1::1735538173::0::1::::<>RigidBody2D<>::
-Earth.gd::GDScript::-1::1735538173::0::1::::<>Node2D<>::
-game_controller.gd::GDScript::-1::1735537750::0::1::::<>Node<>::
+Earth.gd::GDScript::-1::1735543492::0::1::::<>Node2D<>::
+game_controller.gd::GDScript::-1::1735544575::0::1::::<>Node<>::
 Global.gd::GDScript::-1::1735537712::0::1::::<>Node<>::
 Magnet.gd::GDScript::-1::1735508847::0::1::::<>Node2D<>::
-MainScene.gd::GDScript::-1::1735539261::0::1::::<>Node2D<>::
-menuSpawner.gd::GDScript::-1::1735536475::0::1::::<>Node<>::
+MainScene.gd::GDScript::-1::1735548273::0::1::::<>Node2D<>::
+menuSpawner.gd::GDScript::-1::1735544237::0::1::::<>Node<>::
 menu_scene.gd::GDScript::-1::1735537911::0::1::::<>Node2D<>::
 musicPlayerMain.gd::GDScript::-1::1735537906::0::1::::<>AudioStreamPlayer2D<>::
 SpaceDebris.gd::GDScript::-1::1735538173::0::1::::<>RigidBody2D<>::
 SpaceStation.gd::GDScript::-1::1735539261::0::1::::<>Node2D<>::
 Spawner.gd::GDScript::-1::1735539261::0::1::::<>Node<>::
 upgradeMenu.gd::GDScript::-1::1735514907::0::1::::<>Control<>::
-::res://sounds/::1735539168
+::res://sounds/::1735539300
 coin-clatter-6-87110-[AudioTrimmer.com].mp3::AudioStreamMP3::2570227339608871049::1735538887::1735539300::1::::<><>::
 ROCKS AND STONES IMPACT - (Sound Effect)-[AudioTrimmer.com].mp3::AudioStreamMP3::5351028748890756713::1735501295::1735539133::1::::<><>::
 slow frogs (2)-[AudioTrimmer.com].mp3::AudioStreamMP3::3567323548014954767::1735530780::1735530804::1::::<><>::

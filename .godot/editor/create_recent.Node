@@ -1,12 +1,12 @@
+Button
+Control
 AudioStreamPlayer2D
 Label
 HSlider
 Timer
 Sprite2D
 ColorRect
-Control
 AnimatedSprite2D
-Button
 AudioStreamPlayer
 CanvasLayer
 CanvasGroup

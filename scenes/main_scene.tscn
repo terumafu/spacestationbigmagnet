@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://scripts/Earth.gd" id="9_gvxih"]
 [ext_resource type="Texture2D" uid="uid://dfgas3k1c7vgd" path="res://assets/earth.png" id="10_xk3te"]
 [ext_resource type="Script" path="res://scripts/Spawner.gd" id="11_d1c2s"]
-[ext_resource type="FontFile" uid="uid://dc0tj6yde6fby" path="res://fonts/8bitlim.ttf" id="12_8nirl"]
+[ext_resource type="FontFile" uid="uid://b8p24l1ibk6kv" path="res://fonts/ByteBounce.ttf" id="12_bxioo"]
 [ext_resource type="Texture2D" uid="uid://47k3b0xkcvow" path="res://assets/arrow.png" id="13_rtt8h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s3dhi"]
@@ -21,8 +21,8 @@ radius = 82.0
 radius = 450.0
 
 [sub_resource type="Theme" id="Theme_qx5wn"]
-default_font = ExtResource("12_8nirl")
-default_font_size = 30
+default_font = ExtResource("12_bxioo")
+default_font_size = 40
 
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("spawner", "camera", "menuPosition", "spaceStation", "magnet", "earth", "missionStatement", "waveName", "gameOver", "gameWin", "controls")]
 process_mode = 3
@@ -210,7 +210,6 @@ text = "Wave Name"
 
 [node name="gameOver" type="Label" parent="CanvasLayer/Control"]
 visible = false
-modulate = Color(0.568627, 0.00392157, 0.92549, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -225,9 +224,15 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "GAME OVER"
 
+[node name="Button" type="Button" parent="CanvasLayer/Control/gameOver"]
+layout_mode = 0
+offset_top = 100.0
+offset_right = 114.0
+offset_bottom = 136.0
+text = "restart"
+
 [node name="gameWin" type="Label" parent="CanvasLayer/Control"]
 visible = false
-modulate = Color(0.568627, 0.00392157, 0.92549, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -241,6 +246,13 @@ offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "YOU WIN"
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/gameWin"]
+layout_mode = 0
+offset_top = 100.0
+offset_right = 114.0
+offset_bottom = 136.0
+text = "restart"
 
 [node name="Controls Interface" type="Control" parent="CanvasLayer/Control"]
 anchors_preset = 0
@@ -256,6 +268,7 @@ offset_bottom = 649.0
 color = Color(0, 0, 0, 0.721569)
 
 [node name="Label2" type="Label" parent="CanvasLayer/Control/Controls Interface"]
+layout_mode = 0
 offset_left = 365.0
 offset_top = 150.0
 offset_right = 710.0
@@ -263,6 +276,7 @@ offset_bottom = 182.0
 text = "Press D to move"
 
 [node name="Label3" type="Label" parent="CanvasLayer/Control/Controls Interface"]
+layout_mode = 0
 offset_left = 360.0
 offset_top = 458.0
 offset_right = 735.0
@@ -317,3 +331,5 @@ autowrap_mode = 2
 [connection signal="timeout" from="Spawner/spawnTimer" to="Spawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="Spawner/afterWaveTimer" to="Spawner" method="_on_after_wave_timer_timeout"]
 [connection signal="timeout" from="Spawner/killtimer" to="Spawner" method="_on_killtimer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Control/gameOver/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/gameWin/Button" to="." method="_on_button_pressed"]

@@ -95,11 +95,10 @@ var missionArray = [
 					spaceStation.change_money(0);,
 	}
 ]
-
+signal gameReset;
 func _ready():
 	get_tree().paused = true;
 	missionArray.shuffle();
-	
 	#await get_tree().create_timer(0.1).timeout
 	#transition_to_break()
 	spawn_wave();
@@ -175,13 +174,14 @@ func spawn_upgrade_menu():
 		game_win();
 		return;
 		
-	menuPosition.global_position = Vector2(camera.global_position[0] - 300,75);
+	menuPosition.global_position = Vector2(1152/2,75);
 	menuPosition.call_deferred("add_child",temp);
 	temp.repairButtonSignal.connect(repairShip);
 	temp.speedUpgradeSignal.connect(upgradeSpeed);
 	temp.weightUpgradeSignal.connect(upgradeWeight);
 	temp.beamUpgradeSignal.connect(upgradeBeam);
 	temp.exitMenuSignal.connect(exit_menu);
+	
 func check_mission():
 	if currentMission != null:
 		currentMission.checkCallable.call();
@@ -226,3 +226,7 @@ func game_over():
 func game_win():
 	get_tree().paused = true;
 	gameWin.visible = true;
+
+
+func _on_button_pressed():
+	gameReset.emit(self);

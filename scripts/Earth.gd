@@ -11,7 +11,7 @@ func _process(delta):
 	timePassed += delta;
 func _on_area_2d_body_entered(body):
 	if body.return_size() > 2:
-		change_hp(body.return_size());
+		change_hp(body.return_size() * 5);
 		collisionArray.append({"size": body.return_size(), "type" : body.return_type()});
 		if hp <= 0:
 			gameOver.emit();

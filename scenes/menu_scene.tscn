@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://do6gaaltjys6j" path="res://assets/background.png" id="2_83kpl"]
 [ext_resource type="Texture2D" uid="uid://dfgas3k1c7vgd" path="res://assets/earth.png" id="3_i06d5"]
 [ext_resource type="Script" path="res://scripts/menuSpawner.gd" id="4_4ieyu"]
-[ext_resource type="FontFile" uid="uid://dc0tj6yde6fby" path="res://fonts/8bitlim.ttf" id="5_pbjw3"]
+[ext_resource type="FontFile" uid="uid://b8p24l1ibk6kv" path="res://fonts/ByteBounce.ttf" id="4_06uko"]
 
 [sub_resource type="Theme" id="Theme_6n7ud"]
-default_font = ExtResource("5_pbjw3")
-default_font_size = 50
+default_font = ExtResource("4_06uko")
+default_font_size = 60
 
 [node name="MenuScene" type="Node2D" node_paths=PackedStringArray("earth", "titletext")]
 texture_filter = 1
@@ -50,10 +50,11 @@ scale = Vector2(4, 4)
 texture = ExtResource("3_i06d5")
 
 [node name="titleFont" type="Label" parent="CanvasLayer/Control"]
-offset_left = 365.0
-offset_top = 260.0
-offset_right = 726.0
-offset_bottom = 376.0
+layout_mode = 0
+offset_left = 376.0
+offset_top = 262.0
+offset_right = 737.0
+offset_bottom = 378.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.521569, 0.521569, 0.521569, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -72,10 +73,12 @@ offset_bottom = 31.0
 value = 75.0
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 922.0
-offset_top = 10.0
-offset_right = 980.0
-offset_bottom = 33.0
+offset_left = 901.0
+offset_top = 9.0
+offset_right = 1054.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("4_06uko")
+theme_override_font_sizes/font_size = 30
 text = "volume"
 
 [connection signal="startGameSignal" from="Spawner" to="." method="_on_spawner_start_game_signal"]
